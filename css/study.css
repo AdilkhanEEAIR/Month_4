@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -32,4 +32,37 @@ body{
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
+} */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: silver;
+
+}
+button{
+    width: 150px;
+    height: 50px;
+    background-color: yellow;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.red{
+    background-color: red;
 }

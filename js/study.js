@@ -39,37 +39,37 @@
 
 // Characters 
 
-const characters = [
-    {
-        name: "Чебурашка",
-        age: 7,
-    }, 
-    {
-        name: "MackLover",
-        age: 20,
-    },
-    {
-        name: "John Miller",
-        age: 52,
-    },
-    {
-        name: "Sponge Bob",
-        age: 19,
-    },
-    {
-        name: "Tom",
-        age: 10,
-    },
-    {
-        name: "Subaru",
-        age: 17,
-    },
-    {
-        name: "Iron Man",
-        age: 53,
-    }
+// const characters = [
+//     {
+//         name: "Чебурашка",
+//         age: 7,
+//     }, 
+//     {
+//         name: "MackLover",
+//         age: 20,
+//     },
+//     {
+//         name: "John Miller",
+//         age: 52,
+//     },
+//     {
+//         name: "Sponge Bob",
+//         age: 19,
+//     },
+//     {
+//         name: "Tom",
+//         age: 10,
+//     },
+//     {
+//         name: "Subaru",
+//         age: 17,
+//     },
+//     {
+//         name: "Iron Man",
+//         age: 53,
+//     }
 
-];
+// ];
 
 //forEach - только для массивов
 // characters.forEach((item, index) => {
@@ -81,21 +81,74 @@ const characters = [
 //     console.log(item);
 // })
 
-const defaultImg = "https://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}";
+// const defaultImg = "https://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}";
 
-characters.forEach((character) => {
-    const personBlock = document.createElement("div");
-    // personBlock.setAttribute("id", `person-${character.name}`);
-    personBlock.setAttribute("class", "person");
-    personBlock.innerHTML = `
-    <div class= "person_img">
-        <img src="defaultImg" alt="${character.name}">
-    </div>
-    <h3>${character.name}</h3>
-    <span><i><b><u>Age: </u></b></i>${character.age}</span>
-    `;
+// characters.forEach((character) => {
+//     const personBlock = document.createElement("div");
+//     // personBlock.setAttribute("id", `person-${character.name}`);
+//     personBlock.setAttribute("class", "person");
+//     personBlock.innerHTML = `
+//     <div class= "person_img">
+//         <img src="defaultImg" alt="${character.name}">
+//     </div>
+//     <h3>${character.name}</h3>
+//     <span><i><b><u>Age: </u></b></i>${character.age}</span>
+//     `;
 
-    document.body.append(personBlock);
-    // document.body.prepend(personBlock); - задом наперёд
+//     document.body.append(personBlock);
+//     // document.body.prepend(personBlock); - задом наперёд
 
-});
+// });
+
+
+
+
+
+
+// УРОК 3
+
+// // ES5
+
+// устаревшие методы
+// const button = document.getElementById('btn');
+// const buttons = document.getElementsByClassName('btn');
+// const buttons = document.getElementsByTagName('button');
+
+// ES6
+
+// const button = document.querySelector('.btn');
+// const button = document.querySelector('#btn');
+// const button = document.querySelector('button');
+
+// const buttons = document.querySelectorAll('.btn');
+// const buttons = document.querySelectorAll('button');
+// const buttons = document.querySelectorAll('#btn');
+
+// const wrapper = document.querySelector('.wrapper');
+// const newButton = document.createElement('button');
+// wrapper.appendChild(newButton);
+// const buttons = document.querySelectorAll('button');
+// // console.log(buttons[0].checkValidity());   проверяет HTML ли элемент 
+// // buttons[0].classList.add('red', 'btn');
+// // buttons[0].classList.remove('red');
+// // buttons[0].classList.contains('red'); 
+// buttons.forEach((button) => {
+//     button.onclick = (event) => {
+//         event.target.classList.toggle('red');
+//         // if(event.target.classList.contains('red')){
+//         //     event.target.classList.remove('red');
+//         // }
+//         // else{
+//         //     event.target.classList.add('red');
+//         // }
+//     }
+// })
+
+// Делегирование событий
+
+const wrapper = document.querySelector('.wrapper');
+wrapper.onclick = (event) => {  
+    if(event.target.tagName.toLowerCase() === 'button'){
+        event.target.classList.toggle('red');
+    }
+}

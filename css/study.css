@@ -45,7 +45,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-.wrapper{
+/* .wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,4 +65,4 @@ button{
 }
 .red{
     background-color: red;
-}
+} */

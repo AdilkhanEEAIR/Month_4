@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Darth Vader",
+        "age": 45,
+        "photo": "https://preview.redd.it/vw7uc8jxhf4c1.jpg?auto=webp&s=6393925698ed4c7c02df58ba77989664e1466eda"
+    },
+    {
+        "name": "Jackie Chan",
+        "age": 65,
+        "photo": "https://uznayvse.ru/images/content/2023/4/23/jackie-chan-is-still-full-of-strength-and-energy_4.jpg"
+    },
+    {
+        "name": "Batman",
+        "age": 35,
+        "photo": "https://icdn.lenta.ru/images/2025/01/09/17/20250109175042956/wide_4_3_ed90b7cba49f485c7efe524a5726aedb.jpg"
+    }
+]

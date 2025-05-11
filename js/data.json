@@ -1,0 +1,15 @@
+[
+    {
+    "name": "Nurdin",
+    "age": 21,
+    "isMarried": false,
+    "types": [null, "string", 123.123, true, 123],
+    "object": {
+        "address": "Ibraimova 103"
+    }
+},
+{
+    "name": "John",
+    "age": 42
+}
+]

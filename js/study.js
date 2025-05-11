@@ -146,9 +146,59 @@
 
 // Делегирование событий
 
-const wrapper = document.querySelector('.wrapper');
-wrapper.onclick = (event) => {  
-    if(event.target.tagName.toLowerCase() === 'button'){
-        event.target.classList.toggle('red');
+// const wrapper = document.querySelector('.wrapper');
+// wrapper.onclick = (event) => {  
+//     if(event.target.tagName.toLowerCase() === 'button'){
+//         event.target.classList.toggle('red');
+//     }
+// }
+
+
+// УРОК 4
+//JSON - JavaScript Object Notation
+
+// const user = {
+//     name: 'John',
+//     age: '25',
+// }
+// const strUser = JSON.stringify(123);
+// console.log(strUser);
+
+// const strUser = JSON.stringify('qwerty');
+// console.log(strUser);
+
+// const jsonUser = JSON.stringify(user);
+// console.log(jsonUser);
+
+// const jsonUser = JSON.stringify(user);
+// const objectUser = JSON.parse(jsonUser);
+// console.log(jsonUser);
+// console.log(objectUser);
+
+
+// AJAX - Asynchronous Javascript and XML
+// HTTP - HyperText Transfer Protocol
+// HTTPS - HyperText Transfer Protocol Secure
+// Client <-------HTTP-------> Server
+
+// Запросы - requests
+
+// XHR - XML HTTP Request
+
+// XML - Extensible Markup Language
+// HTML -  HyperText Markup Language
+
+// GET POST DELETE PATCH   <-- methods
+
+const button1 = document.querySelector('.btn');
+button1.onclick = () => {
+    const request = new XMLHttpRequest(); // 1. Создание запроса
+    request.open('GET', '/js/data.json');  // 2. Указание метода запроса и создание пути
+    request.setRequestHeader('Content-type', 'application/json');// 3. Указание заголовка запроса
+    request.send(); // 4. Отправка запроса
+    request.onload = () => {
+        const data = JSON.parse(request.response);
+        document.querySelector('.name').innerHTML = data.name
+        document.querySelector('.age').innerHTML = data.age
     }
 }

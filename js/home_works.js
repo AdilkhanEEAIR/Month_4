@@ -116,3 +116,49 @@ resetBtn.onclick = () => {
   num = 0;
   seconds.innerHTML = num;
 }
+
+
+// ДОМАШНЕЕ ЗАДАНИЕ 4
+// 1) Персонажи
+window.onload = function() {
+  const request = new XMLHttpRequest();
+  request.open('GET', '/data/characters.json');
+  request.setRequestHeader('Content-type', 'application/json');
+  request.send();
+  
+  request.onload = function() { 
+    const data = JSON.parse(request.response);
+    const charactersList = document.querySelector('.characters-list');
+
+    for (let i = 0; i < data.length; i++) { 
+      const character = data[i];
+      const characterCard = document.createElement('div'); 
+      characterCard.classList.add('character-card');
+
+      characterCard.innerHTML = `
+        <div class="character-photo">
+          <img src="${character.photo}" alt="${character.name}">
+        </div>
+        <h3>${character.name}</h3>
+        <p class="age" style="color: white;">Age: ${character.age}</p>
+      `;
+      charactersList.appendChild(characterCard);
+    }
+  };
+};
+
+// 2) XMLHttpRequest запрос в консоль лог
+const request1 = new XMLHttpRequest();
+request1.open('GET', '/data/any.json');
+request1.setRequestHeader('Content-type', 'application/json');
+request1.send();
+
+request1.onload = function(){
+  if (request1.status === 200){  
+    const data = JSON.parse(request1.response);  
+    console.log(data);  
+  } 
+  else {
+    console.error('Ошибка:', request1.status);
+  }
+};

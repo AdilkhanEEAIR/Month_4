@@ -64,3 +64,67 @@ setInterval(() => {
     hideTabContent();
     showTabContent(currentIndex);
 }, 3000);
+
+
+// Урок 5
+// CONVERTER
+const somInput = document.querySelector('#som');
+const usdInput = document.querySelector('#usd');
+const eurInput = document.querySelector('#eur');
+
+const converter = (element, targetElement1, targetElement2) => {
+    element.oninput = () => {
+        const request = new XMLHttpRequest();
+        request.open('GET', '../data/converter.json');
+        request.setRequestHeader('Content-type', 'application/json');
+        request.send();
+        request.onload = () => {
+        const data = JSON.parse(request.response);
+        if(element.id === 'som'){
+            targetElement1.value = (element.value/data.usd).toFixed(2);
+            targetElement2.value = (element.value/data.eur).toFixed(2);
+        }
+        if(element.id === 'usd'){
+            targetElement1.value = (element.value*data.usd).toFixed(2);
+            targetElement2.value = ((element.value * data.usd) / data.eur).toFixed(2);
+        }
+        if (element.id === 'eur') {
+               targetElement1.value = (element.value * data.eur).toFixed(2);
+               targetElement2.value = ((element.value * data.eur) / data.usd).toFixed(2);
+        }
+        if (element.value === '') {
+            targetElement1.value = '';
+            targetElement2.value = '';
+        }
+    }
+}
+}
+converter(somInput, usdInput, eurInput);
+converter(usdInput, somInput, eurInput);
+converter(eurInput, somInput, usdInput);
+
+
+// somInput.oninput = () => {
+//     const request = new XMLHttpRequest();
+//     request.open('GET', '../data/converter.json');
+//     request.setRequestHeader('Content-type', 'application/json');
+//     request.send();
+//     request.onload = () => {
+//         const data = JSON.parse(request.response);
+//         usdInput.value = (somInput.value/data.usd).toFixed(2);
+//     }    
+// }
+
+// usdInput.oninput = () => {
+//     const request = new XMLHttpRequest();
+//     request.open('GET', '../data/converter.json');
+//     request.setRequestHeader('Content-type', 'application/json');
+//     request.send();
+//     request.onload = () => {
+//         const data = JSON.parse(request.response);
+//         somInput.value = (usdInput.value*data.usd).toFixed(2);
+//     }    
+// }
+
+// DRY - Don't Repeat Yourself
+// KISS - Keep It Super Simple

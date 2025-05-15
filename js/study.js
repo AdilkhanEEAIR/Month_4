@@ -202,3 +202,7 @@ button1.onclick = () => {
         document.querySelector('.age').innerHTML = data.age
     }
 }
+
+
+
+

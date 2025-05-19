@@ -206,3 +206,132 @@ button1.onclick = () => {
 
 
 
+
+// УРОК 6
+
+// Деструктуризация
+const user = {
+    name: 'John',
+    age: 21,
+    isMarried: false,
+}
+
+const { name, age } = user
+console.log(name, age);
+
+// console.log(user.name, user.age);
+
+// Hell CallBack
+const loggerProduct = (product) => {
+    const {product_name, price} = product;
+    console.log(`Name: ${product_name}\nprice: ${price}som`);
+    
+}
+
+
+console.log("Loading...");
+// setTimeout(() => {
+//     const product = {
+//         product_name: 'Coca-cola',
+//         price: 100
+//     }
+//     loggerProduct(product);
+//     setTimeout(() => {
+//         product.product_name = "Fanta";
+//         loggerProduct(product);
+//             setTimeout(() => {
+//                 product.product_name = "Pepsi";
+//                 loggerProduct(product);
+//                     setTimeout(() => {
+//                         product.product_name = "Mirinda";
+//                         product.price = 87;
+//                         loggerProduct(product);
+//                             setTimeout(() => {
+//                                 product.product_name = "Sultan Chay";
+//                                 product.price = 60;
+//                                 loggerProduct(product);
+//                                     setTimeout(() => {
+//                                         product.product_name = "Milk";
+//                                         product.price = 90;
+//                                         loggerProduct(product);
+//                                     }, 1500);
+//                                 }, 1500);
+//                             }, 1500);
+//                         }, 1500);
+//                     }, 1500);
+// }, 2000);
+
+// Promise ---> pending ---> fulfilled || rejected
+
+
+// const delay = 2000;
+// const promise = new Promise((resolve, reject) => {
+//     // throw new Error('Nurdin')
+//     setTimeout(() => {
+//         const product = {
+//             product_name: "Coca-cola",
+//             price: 100
+//         } 
+//         loggerProduct(product);
+//         resolve(product);
+//         reject();
+//     }, delay)
+// })
+// promise.then((product) => {
+//     return new Promise (() => {
+//         setTimeout(() => {
+//         product.product_name = "Fanta";
+//         loggerProduct(product);
+//     }, delay)
+//     // console.log("Resolve");
+//     })
+// }, () => {
+//     console.log("Promise one error");
+    
+// }).then((product) => {
+//     setTimeout(() => {
+//         product.product_name = "Pepsi";
+//         loggerProduct(product);
+//         resolve(product);
+//         reject();
+//     }, delay)
+// }, () => {
+//     console.log("Promise two error");
+// })  
+
+// Fetch
+// XHR --> fetch
+
+// const res = fetch('/data/fetch.json')
+//     .then((response) => {
+//         response.json()
+//         .then((data) => 
+//             console.log(data)
+//         )
+//     },)
+
+
+    // .catch(err => console.log(err))
+    // .finally(() => console.log('FINALLY')
+    // )
+
+
+
+
+// API - Application Programming Interface
+// LINK
+// https://jsonplaceholder.typicode.com
+
+// API
+// протокол, домен, endpoint
+// https://jsonplaceholder.typicode.com/todos - endpoint
+
+// https://jsonplaceholder.typicode.com/todos/id - query param
+
+fetch('https://jsonplaceholder.typicode.com/todos/101')
+    .then((response) => {
+        response.json()
+        .then((data) => 
+            console.log(data)
+        )
+    },)

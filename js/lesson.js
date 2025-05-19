@@ -128,3 +128,75 @@ converter(eurInput, somInput, usdInput);
 
 // DRY - Don't Repeat Yourself
 // KISS - Keep It Super Simple
+
+
+// УРОК 6
+// Card switcher
+// const cardBlock = document.querySelector('.card');
+// const btnNext = document.querySelector('#btn-next');
+// const btnPrev = document.querySelector('#btn-prev');
+// let cardId = 0;
+
+// btnNext.onclick = () => {
+//     cardId++;
+//     fetch(`https://jsonplaceholder.typicode.com/todos/${cardId}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             const { id, title, completed } = data;
+//             cardBlock.innerHTML = 
+//             `
+//             <p>${title}</p>
+//             <p style="color: ${completed ? 'green' : 'red'}">${completed}</p>
+//             <span>${id}</span>
+//             `;
+//         });
+// };
+
+
+// ДОМАШНЕЕ ЗАДАНИЕ 6
+// 1) Карточки
+const cardBlock = document.querySelector('.card');
+const btnNext = document.querySelector('#btn-next');
+const btnPrev = document.querySelector('#btn-prev');
+const maxId = 200;
+let cardId = 1; 
+
+function loadCard(id) {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            const { id, title, completed } = data;
+            cardBlock.innerHTML = `
+                <p>${title}</p>
+                <p style="color: ${completed ? 'green' : 'red'}">${completed}</p>
+                <span>${id}</span>
+            `;
+        })
+}
+loadCard(cardId);
+
+btnNext.onclick = () => {
+    if (cardId === maxId) {
+        cardId = 1;
+    } else {
+        cardId = cardId + 1;
+    }
+    loadCard(cardId);
+};
+
+btnPrev.onclick = () => {
+    if (cardId === 1) {
+        cardId = maxId;
+    } else {
+        cardId = cardId - 1;
+    }
+    loadCard(cardId);
+};
+
+
+// 2) fetch-запрос в консоль
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(answer => answer.json())
+    .then(info => {
+        console.log(info); 
+})

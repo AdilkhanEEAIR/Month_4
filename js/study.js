@@ -190,18 +190,18 @@
 
 // GET POST DELETE PATCH   <-- methods
 
-const button1 = document.querySelector('.btn');
-button1.onclick = () => {
-    const request = new XMLHttpRequest(); // 1. Создание запроса
-    request.open('GET', '/js/data.json');  // 2. Указание метода запроса и создание пути
-    request.setRequestHeader('Content-type', 'application/json');// 3. Указание заголовка запроса
-    request.send(); // 4. Отправка запроса
-    request.onload = () => {
-        const data = JSON.parse(request.response);
-        document.querySelector('.name').innerHTML = data.name
-        document.querySelector('.age').innerHTML = data.age
-    }
-}
+// const button1 = document.querySelector('.btn');
+// button1.onclick = () => {
+//     const request = new XMLHttpRequest(); // 1. Создание запроса
+//     request.open('GET', '/js/data.json');  // 2. Указание метода запроса и создание пути
+//     request.setRequestHeader('Content-type', 'application/json');// 3. Указание заголовка запроса
+//     request.send(); // 4. Отправка запроса
+//     request.onload = () => {
+//         const data = JSON.parse(request.response);
+//         document.querySelector('.name').innerHTML = data.name
+//         document.querySelector('.age').innerHTML = data.age
+//     }
+// }
 
 
 
@@ -210,26 +210,26 @@ button1.onclick = () => {
 // УРОК 6
 
 // Деструктуризация
-const user = {
-    name: 'John',
-    age: 21,
-    isMarried: false,
-}
+// const user = {
+//     name: 'John',
+//     age: 21,
+//     isMarried: false,
+// }
 
-const { name, age } = user
-console.log(name, age);
+// const { name, age } = user
+// console.log(name, age);
 
-// console.log(user.name, user.age);
+// // console.log(user.name, user.age);
 
-// Hell CallBack
-const loggerProduct = (product) => {
-    const {product_name, price} = product;
-    console.log(`Name: ${product_name}\nprice: ${price}som`);
+// // Hell CallBack
+// const loggerProduct = (product) => {
+//     const {product_name, price} = product;
+//     console.log(`Name: ${product_name}\nprice: ${price}som`);
     
-}
+// }
 
 
-console.log("Loading...");
+// console.log("Loading...");
 // setTimeout(() => {
 //     const product = {
 //         product_name: 'Coca-cola',
@@ -328,10 +328,90 @@ console.log("Loading...");
 
 // https://jsonplaceholder.typicode.com/todos/id - query param
 
-fetch('https://jsonplaceholder.typicode.com/todos/101')
-    .then((response) => {
-        response.json()
-        .then((data) => 
-            console.log(data)
-        )
-    },)
+// fetch('https://jsonplaceholder.typicode.com/todos/101')
+//     .then((response) => {
+//         response.json()
+//         .then((data) => 
+//             console.log(data)
+//         )
+//     },)
+
+
+// LESSON 7
+
+    //async await, try catch
+
+// mockapi.io
+
+//https://682b3bb8d29df7a95be29d0c.mockapi.io/characters
+
+const api = 'https://682b3bb8d29df7a95be29d0c.mockapi.io/characters';
+const characterIdInput = document.querySelector('#characterId');
+const characterNameInput = document.querySelector('#characterName');
+const getBtn = document.querySelector('#GET');
+const postBtn = document.querySelector('#POST');
+const putBtn = document.querySelector('#PUT');
+const deleteBtn = document.querySelector('#DELETE');
+
+
+const getCharacters = async (id) => {
+    try{
+        const response = await fetch(`${api}/${id ? id : ''}`)
+        const characters = await response.json()
+        console.log(characters);
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+const postCharacters = async () => {
+    try{
+        await fetch(api, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+           avatar: characterNameInput.value,  
+        })
+    })
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+const putCharacters = async (id) => {
+    try{
+        await fetch(`${api}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+           avatar: characterNameInput.value
+        })
+    })
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+const deleteCharacters = async (id) => {
+    try{
+        await fetch(`${api}/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    })
+    }
+    catch(error){
+        console.log(error);
+    }
+    // finally{
+    //     console.log("FINALLY");
+    // }
+    
+}
+
+getBtn.onclick = () => getCharacters(characterIdInput.value);
+postBtn.onclick = () => postCharacters();
+putBtn.onclick = () => putCharacters(characterIdInput.value);
+deleteBtn.onclick = () => deleteCharacters(characterIdInput.value);

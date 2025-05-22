@@ -161,18 +161,21 @@ const btnPrev = document.querySelector('#btn-prev');
 const maxId = 200;
 let cardId = 1; 
 
-function loadCard(id) {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
-        .then(response => response.json())
-        .then(data => {
-            const { id, title, completed } = data;
-            cardBlock.innerHTML = `
-                <p>${title}</p>
-                <p style="color: ${completed ? 'green' : 'red'}">${completed}</p>
-                <span>${id}</span>
-            `;
-        })
+async function loadCard(id) {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+        const data = await response.json();
+        const { id: dataId, title, completed } = data;
+        cardBlock.innerHTML = `
+            <p>${title}</p>
+            <p style="color: ${completed ? 'green' : 'red'}">${completed}</p>
+            <span>${dataId}</span>`
+        ;
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
 }
+
 loadCard(cardId);
 
 btnNext.onclick = () => {
@@ -193,10 +196,56 @@ btnPrev.onclick = () => {
     loadCard(cardId);
 };
 
-
 // 2) fetch-запрос в консоль
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(answer => answer.json())
-    .then(info => {
-        console.log(info); 
-})
+// fetch('https://jsonplaceholder.typicode.com/posts')
+//     .then(answer => answer.json())
+//     .then(info => {
+//         console.log(info); 
+// })
+
+async function fetchPosts() {
+    try {
+        const answer = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const info = await answer.json();
+        console.log(info);
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+}
+fetchPosts();
+
+
+// Weather
+
+// query params 
+// q 
+
+//api  e417df62e04d3b1b111abeab19cea714
+
+// http://api.openweathermap.org/data/2.5/weather
+const searchInput = document.querySelector('.cityName');
+const searchButton = document.querySelector('#search');
+const city = document.querySelector('.city');
+const temp = document.querySelector('.temp');
+
+const BASE_API = 'http://api.openweathermap.org/data/2.5/weather'
+const API_KEY = 'e417df62e04d3b1b111abeab19cea714';
+
+searchButton.onclick = async () => {
+    if (searchInput.value !== '') {
+        try {
+            const response = await fetch(`${BASE_API}?q=${searchInput.value}&units=metric&lang=fr&appid=${API_KEY}`);
+            const data = await response.json();
+            city.innerHTML = data.name ? data.name : 'City not found';
+            temp.innerHTML = Math.round(data.main.temp) + '℃';
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+            city.innerHTML = 'Ошибка запроса';
+            temp.innerHTML = '';
+        }
+        searchInput.value = '';
+    } else {
+        city.innerHTML = 'Please enter a city name';
+        temp.innerHTML = '';
+    }
+};
